@@ -28,12 +28,12 @@ def calculer_viscosite_eau(temp):
     # pour la plage de température utilisée
     temp = temp + 273
     if 300 < temp < 340:
-        pente = (855*10**6 - 42010**6)/(300 - 340)
-        b = 577 - (pente * 320)
+        pente = (855 * 10**6 - 420 * 10**6)/(300 - 340)
+        b = 577 * 10**6 - (pente * 320)
 
     elif 340 <= temp < 390:
-        pente = (42010**6 - 23710**6)/(340 - 390)
-        b = 28910**6 - (pente * 370)
+        pente = (420 * 10**6 - 237 * 10**6)/(340 - 390)
+        b = 289 * 10**6 - (pente * 370)
     
     else:
         raise Exception("temperature pas de l'intervalle acceptable")
