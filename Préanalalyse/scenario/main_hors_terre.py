@@ -1,6 +1,9 @@
 import numpy as np
 import pandas as pd
 from fonctions import *
+from resistance_convection_interne import *
+from resistance_conduction import *
+from resistance_convection_externe import *
 
 # variables imposées
 demande = 1*10**6 # demande des bâtiments en W
@@ -33,5 +36,13 @@ reynolds = calculer_reynolds(densite_eau, viscosite_eau, diametre, viscosite_eau
 
 
 # étape 2: évaluer la résistance totale du circuit thermique
+
+R_conv_int = résistance_convection_interne(diametre, conductivite, longueur)
+R_cond = calculer_Rconduction_cylindre(diametre, epaisseur_tuyau, longueur, conductivite)
+R_conv_ext = résistance_convection_externe(densite_eau, vitesse_eau, diametre, conductivite, longueur, temp_entree_alimentation)
+
+R_tot = R_conv_int + R_cond + R_conv_ext
+
+print(R_tot)
 
 # étape 3: évaluer les pertes de chaleur en puissance
