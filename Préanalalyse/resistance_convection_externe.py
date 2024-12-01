@@ -1,5 +1,5 @@
 import numpy as np
-from fonctions import *
+from scenario.fonctions import *
 
 def résistance_convection_externe(rho, V, D, k, L, T):
     viscosite = calculer_viscosite_eau(T)
