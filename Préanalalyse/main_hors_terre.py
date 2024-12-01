@@ -14,7 +14,8 @@ temp_retour = 45 # température en ˚C de l'eau en sortie du tuyau
 vitesse_eau = 2 # vitesse moyenne de l'eau dans le tuyau
 densite_eau = 1000 # densité de l'eau en kg/m^3
 chaleur_specifique_eau = 4.18 * 10**3 # chaleur spécifique de l'eau qui est considéré comme constante pour la plage de temp. considérée
-conductivite_eau = 650 * 10**3 # conductivite de l'eau en W/m.k
+conductivite_eau = 650 * 10**-3 # conductivite de l'eau en W/m.k
+conductivite_air = 24*10**-3
 
 # paramètres du tuyau
 diametre = 0.15 # diametre du tuyau d'alimentation
@@ -37,9 +38,9 @@ reynolds = calculer_reynolds(densite_eau, viscosite_eau, diametre, viscosite_eau
 
 # étape 2: évaluer la résistance totale du circuit thermique
 
-R_conv_int = résistance_convection_interne(diametre, conductivite, longueur)
+R_conv_int = résistance_convection_interne(diametre, conductivite_eau, longueur)
 R_cond = calculer_Rconduction_cylindre(diametre, epaisseur_tuyau, longueur, conductivite)
-R_conv_ext = résistance_convection_externe(densite_eau, vitesse_eau, diametre, conductivite, longueur, temp_entree_alimentation)
+R_conv_ext = résistance_convection_externe(densite_eau, vitesse_eau, diametre, conductivite_air, longueur, temp_entree_alimentation)
 
 R_tot = R_conv_int + R_cond + R_conv_ext
 
