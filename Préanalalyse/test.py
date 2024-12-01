@@ -24,6 +24,6 @@ delta_T = temp_alimentation - temp_retour
 
 debit_massique = demande/(delta_T * chaleur_specifique_eau)
 
-d = diametre(debit_massique, vitesse_eau, densite_eau)
+d = D(debit_massique, vitesse_eau, densite_eau)
 
 print(f"Le diamètre du tuyau est {d:.2f} m")
