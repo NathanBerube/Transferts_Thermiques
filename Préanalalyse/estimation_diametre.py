@@ -18,6 +18,8 @@ viscosite_eau = calculer_viscosite_eau(temp_moyenne)
 # utilisation de l'équation q = m_dot * cp * ∆T pour obtenir un ordre de grandeur pour le diamètre du tuyau pour fournir
 # suffisament d'énergie aux bâtiments
 
+# on cherche un ordre de grandeur de diamètre de tuyau ;our 
+
 delta_T = temp_alimentation - temp_retour
 
 debit_massique = demande/(delta_T * chaleur_specifique_eau)
