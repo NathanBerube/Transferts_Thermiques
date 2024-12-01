@@ -28,7 +28,6 @@ viscosite_eau = calculer_viscosite_eau(temp_moyenne)
 reynolds = calculer_reynolds(densite_eau, viscosite_eau, diametre, viscosite_eau)
 
 
-
 # étape 1: évaluer la température en entrée des bâtiments
 
 # étape 2: évaluer la résistance totale du circuit thermique
