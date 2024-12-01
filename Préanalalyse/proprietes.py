@@ -3,9 +3,6 @@ import numpy as np
 def load_data_meteo(path):
     pass
 
-def diamètre(debit_massique, vitesse_eau, densite_eau):
-    return np.sqrt(4 * debit_massique/(vitesse_eau * densite_eau * np.pi))
-
 def churchill_bernstein(reynolds, prandtl):
     premier_terme = (0.62 * reynolds**(1/2) * prandtl**(1/3))/(1 + (0.4/prandtl)**(2/3))**(1/4)
     deuxieme_terme = (1 + (reynolds/282000)**(5/8))**(4/5)

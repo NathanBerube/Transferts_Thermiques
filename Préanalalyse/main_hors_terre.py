@@ -1,9 +1,12 @@
 import numpy as np
 import pandas as pd
-from fonctions import *
+from proprietes import *
 from resistance_convection_interne import *
 from resistance_conduction import *
 from resistance_convection_externe import *
+from pertes import *
+from demande_en_pompage import *
+
 
 # variables imposées
 demande = 1*10**6 # demande des bâtiments en W
@@ -49,6 +52,18 @@ R_conv_ext = résistance_convection_externe(D_tuy, k_air, L_tuy, Re_air, Pr_air)
 
 R_tot = R_conv_int + R_cond + R_conv_ext
 
-print(R_tot)
+print(f"La résistance totale est {R_tot:.5f}")
 
 # étape 3: évaluer les pertes de chaleur en puissance
+
+delta_tlm = delta_tlm(T_air, T_in, T_out_theorique)
+pertes = calculer_pertes(R_tot, delta_tlm)
+
+print(f"Les pertes sont évaluées à {pertes:.2f} W vers l'extérieur")
+
+# étape 4: évaluer la puissance en pompage nécessaire
+
+perte_charge = perte_de_charge(Re_eau, L_tuy, D_tuy, rho_eau, V_eau)
+puissance_pomp = puissance_pompage(perte_charge, m_dot, rho_eau)
+
+print(f"La puissance de pompage requise est {puissance_pomp:.2f} W")
