@@ -20,6 +20,7 @@ k_eau = 650 * 10**-3 # conductivite de l'eau en W/m.k
 k_air = 24*10**-3
 V_air = 5
 rho_air = 1.2
+T_air = 0
 
 # paramètres du tuyau
 D_tuy = 0.15 # diametre du tuyau d'alimentation
@@ -36,8 +37,8 @@ T_moy = (T_in + T_out_theorique)/2 # évaluation des propriétés à cette temp�
 Pr_eau = calculer_prandtl_eau(T_moy)
 mu_eau = calculer_viscosite_eau(T_moy)
 Re_eau = calculer_reynolds(rho_eau, V_eau, D_tuy+2*t_tuy, mu_eau)
-Pr_air = 0.72
-mu_air = 16 * 10**-6
+Pr_air = calculer_prandtl_air(T_air)
+mu_air = calculer_viscosite_air(T_air)
 Re_air = calculer_reynolds(rho_air, V_air, D_tuy+2*t_tuy, mu_air)
 
 # étape 2: évaluer la résistance totale du circuit thermique
