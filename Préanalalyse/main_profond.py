@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from fonctions import *
+from proprietes import *
 from resistance_convection_interne import *
 from resistance_conduction import *
 from resistance_facteur_de_forme import *
