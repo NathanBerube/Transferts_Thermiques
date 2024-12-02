@@ -1,11 +1,13 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 from proprietes import *
 from resistance_convection_interne import *
 from resistance_conduction import *
 from resistance_facteur_de_forme import *
 from pertes import *
 from demande_en_pompage import *
+
 
 # variables imposées
 demande = 1*10**6 # demande des bâtiments en W
@@ -31,13 +33,13 @@ D_tuy = 0.15 # diametre du tuyau d'alimentation
 k_tuy = 50 # conducivité du tuyau en acier au carbone, estimée à 50 w/m.K
 L_tuy = 1500 # longueur du tuyau, fixée à 1.5 km
 t_tuy = 0.01 # épaisseur du tuyau en mètres
-Z_tuyau = 1
+Z_tuyau = 2
 
 # paramètres de l'isolsant
 D_iso = D_tuy+(2*t_tuy)
-t_iso = 0
+t_iso = np.linspace(0,1,100)
 L_iso = L_tuy
-k_iso = 0.035 #conductuvité thermique de l'isolant - 0.035 = laine de verre ou laine de roche
+k_iso = 0.5 #conductuvité thermique de l'isolant - 0.035 = laine de verre ou laine de roche
 
 # étape 1: évaluer la température en entrée des bâtiments
 m_dot = rho_eau * np.pi * 1/4 * D_tuy**2 * V_eau
@@ -60,18 +62,24 @@ print(f"Résistance de conduction isolant {R_cond_iso}")
 print(f"Résistance profond {R_S}")
 
 R_tot = R_conv_int + R_cond_iso + R_S + R_cond_iso
-print(f"La résistance totale est {R_tot:.5f}")
+print(f"La résistance totale est {R_tot}")
 
 # étape 3: évaluer les pertes de chaleur en puissance
 
 delta_tlm = delta_tlm(T_air, T_in, T_out_théorique)
 pertes = calculer_pertes(R_tot, delta_tlm)
 
-print(f"Les pertes sont évaluées à {pertes:.2f} W vers l'extérieur")
+print(f"Les pertes sont évaluées à {pertes} W vers l'extérieur")
 
 # étape 4: évaluer la puissance en pompage nécessaire
 
 perte_charge = perte_de_charge(Re_eau, L_tuy, D_tuy, rho_eau, V_eau)
 puissance_pomp = puissance_pompage(perte_charge, m_dot, rho_eau)
 
-print(f"La puissance de pompage requise est {puissance_pomp:.0f} W")
+print(f"La puissance de pompage requise est {puissance_pomp} W")
+
+plt.plot(t_iso, np.abs(pertes)/1000, color="black")
+plt.xlabel("Épaisseur de l'isolant [m]", fontsize=18)
+plt.ylabel("Pertes de chaleur estimée [kW]", fontsize=18)
+plt.show()
+
