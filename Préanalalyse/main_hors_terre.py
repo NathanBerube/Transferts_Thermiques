@@ -20,6 +20,7 @@ rho_eau = 1000 # densité de l'eau en kg/m^3
 C_eau = 4.18 * 10**3 # chaleur spécifique de l'eau qui est considéré comme constante pour la plage de temp. considérée
 k_eau = 650 * 10**-3 # conductivite de l'eau en W/m.k
 
+# paramètres de l'air
 k_air = 24*10**-3
 V_air = 5
 rho_air = 1.2
