@@ -39,7 +39,7 @@ Z_tuyau = 1 # profondeur du tuyau en m
 D_iso = D_tuy+(2*t_tuy)
 t_iso = np.linspace(0,0.1,6)
 L_iso = L_tuy
-k_iso = 0.5 #conductuvité thermique de l'isolant - 0.035 = laine de verre ou laine de roche
+k_iso = 0.03 #conductivité thermique de l'isolant - 0.035 = laine de verre ou laine de roche ou polyurethane
 for epaisseur_iso in t_iso:
 # étape 1: évaluer la température en entrée des bâtiments
     m_dot = rho_eau * np.pi * 1/4 * D_tuy**2 * V_eau
