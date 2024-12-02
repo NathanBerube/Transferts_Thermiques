@@ -34,9 +34,9 @@ t_tuy = 0.01 # épaisseur du tuyau en mètres
 
 # paramètres de l'isolsant
 D_iso = D_tuy+(2*t_tuy)
-t_iso = 0.1
+t_iso = 0
 L_iso = L_tuy
-k_iso = 0.5 #conductuvité thermique de l'isolant - 0.035 = laine de verre ou laine de roche
+k_iso = 0.035 #conductuvité thermique de l'isolant - 0.035 = laine de verre ou laine de roche
 
 
 # étape 1: évaluer la température en entrée des bâtiments
@@ -55,7 +55,6 @@ mu_air = calculer_viscosite_air(T_air)
 Re_air = calculer_reynolds(rho_air, V_air, D_iso + 2*t_iso, mu_air)
 
 # étape 2: évaluer la résistance totale du circuit thermique
-
 R_conv_int = résistance_convection_interne(D_tuy, k_eau, L_tuy)
 R_cond_tuy = calculer_Rconduction_cylindre(D_tuy, t_tuy, L_tuy, k_tuy)
 R_cond_iso = calculer_Rconduction_cylindre(D_iso, t_iso, L_tuy, k_iso)
