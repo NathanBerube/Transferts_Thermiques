@@ -9,6 +9,6 @@ def churchill_bernstein(reynolds, prandtl):
 def résistance_convection_externe(D, k, L, Re, Pr):
     Nu = churchill_bernstein(Re, Pr)
     h = Nu * k / L
-    A = L * np.pi * D / 4
+    A = L * np.pi * D
 
     return 1/(h*A)

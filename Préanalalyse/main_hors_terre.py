@@ -45,7 +45,7 @@ T_out_theorique = demande/(m_dot * C_eau) + T_out
 T_moy = (T_in + T_out_theorique)/2 # évaluation des propriétés à cette température
 
 # paramètres calculés en fonction de ceux imposés
-Pr_eau = calculer_prandtl_eau(T_moy)
+Pr_eau = 7
 # mu_eau = calculer_viscosite_eau(T_moy)
 mu_eau = 4.67 * 10**-4
 

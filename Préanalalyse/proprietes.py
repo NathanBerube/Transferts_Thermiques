@@ -41,14 +41,14 @@ def calculer_prandtl_air(temp):
     # interpolation linéaire du nombre de prandtl à partir de la table
     # pour la plage de température utilisée
     pente = (0.707 - 0.720)/(50)
-    b = 0.720
+    b = 0.720 - pente*250
 
-    return pente*(temp+23) + b
+    return pente*(temp+273) + b
 
 def calculer_viscosite_air(temp):
     # interpolation linéaire du nombre de la viscosité dynamique de l'eau à partir de la table
     # pour la plage de température utilisée
     pente = (18.46 * 10**-6 - 15.96 * 10**-6)/(50)
-    b = 15.96 * 10**-6
+    b = 15.96 * 10**-6 - pente*250
 
-    return pente*(temp+23) + b
+    return pente*(temp+273) + b
