@@ -1,6 +1,6 @@
 import numpy as np
 
-def delta_tlm(t_inf, t_in,t_out):
+def del_tlm(t_inf, t_in,t_out):
     delta_sortant = t_inf - t_out
     delta_entrant = t_inf - t_in
     

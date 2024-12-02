@@ -65,7 +65,7 @@ print(f"La résistance totale est {R_tot:.5f}")
 
 # étape 3: évaluer les pertes de chaleur en puissance
 
-delta_tlm = delta_tlm(T_air, T_in, T_out_théorique)
+delta_tlm = del_tlm(T_air, T_in, T_out_théorique)
 pertes = calculer_pertes(R_tot, delta_tlm)
 
 print(f"Les pertes sont évaluées à {pertes:.2f} W vers l'extérieur")

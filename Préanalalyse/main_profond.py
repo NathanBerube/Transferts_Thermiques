@@ -37,7 +37,7 @@ Z_tuyau = 2
 
 # paramètres de l'isolsant
 D_iso = D_tuy+(2*t_tuy)
-t_iso = np.linspace(0,1,100)
+t_iso = 0.1
 L_iso = L_tuy
 k_iso = 0.5 #conductuvité thermique de l'isolant - 0.035 = laine de verre ou laine de roche
 
@@ -66,8 +66,8 @@ print(f"La résistance totale est {R_tot}")
 
 # étape 3: évaluer les pertes de chaleur en puissance
 
-delta_tlm = delta_tlm(T_air, T_in, T_out_théorique)
-pertes = calculer_pertes(R_tot, delta_tlm)
+del_tlm = del_tlm(T_air, T_in, T_out_théorique)
+pertes = calculer_pertes(R_tot, del_tlm)
 
 print(f"Les pertes sont évaluées à {pertes} W vers l'extérieur")
 
@@ -77,9 +77,4 @@ perte_charge = perte_de_charge(Re_eau, L_tuy, D_tuy, rho_eau, V_eau)
 puissance_pomp = puissance_pompage(perte_charge, m_dot, rho_eau)
 
 print(f"La puissance de pompage requise est {puissance_pomp} W")
-
-plt.plot(t_iso, np.abs(pertes)/1000, color="black")
-plt.xlabel("Épaisseur de l'isolant [m]", fontsize=18)
-plt.ylabel("Pertes de chaleur estimée [kW]", fontsize=18)
-plt.show()
 
