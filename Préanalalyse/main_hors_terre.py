@@ -6,6 +6,7 @@ from resistance_conduction import *
 from resistance_convection_externe import *
 from pertes import *
 from demande_en_pompage import *
+from Var_temp import *
 
 
 # variables imposées
@@ -25,6 +26,13 @@ k_air = 24 * 10**-3
 V_air = 5
 rho_air = 1.2
 T_air = 0
+
+#Valeur pour le vent par saison [température, vitesse]
+H = [-19.8, 4.32]
+P = [-12.4, 4.45]
+E = [8.2, 4.40] 
+A = [2.3, 4.40]
+saison = A # Changer cette variable pour choisir la saison à évaluer
 
 # paramètres du tuyau
 D_tuy = 0.15 # diametre du tuyau d'alimentation
@@ -53,11 +61,16 @@ Re_eau = calculer_reynolds(rho_eau, V_eau, D_tuy, mu_eau)
 Pr_air = calculer_prandtl_air(T_air)
 mu_air = calculer_viscosite_air(T_air)
 Re_air = calculer_reynolds(rho_air, V_air, D_iso + 2*t_iso, mu_air)
+
+Pr_air_saison = calculer_prandtl_air(saison[0])
+mu_air_saison = calculer_viscosite_air(saison[0])
+Re_air_saison = calculer_reynolds_saison(rho_air, saison, D_iso + 2*t_iso, mu_air_saison) #modifier le 2e terme pour la saison voulu
+
 # étape 2: évaluer la résistance totale du circuit thermique
 R_conv_int = résistance_convection_interne(D_tuy, k_eau, L_tuy)
 R_cond_tuy = calculer_Rconduction_cylindre(D_tuy, t_tuy, L_tuy, k_tuy)
 R_cond_iso = calculer_Rconduction_cylindre(D_iso, t_iso, L_tuy, k_iso)
-R_conv_ext = résistance_convection_externe(D_iso + 2*t_iso, k_air, L_tuy, Re_air, Pr_air)
+R_conv_ext = résistance_convection_externe(D_iso + 2*t_iso, k_air, L_tuy, Re_air_saison, Pr_air_saison) #pour prendre en considération la saison, modifier Re_air par Re_air_saison
 print(f"Résistance de convection interne {R_conv_int}")
 print(f"Résistance de conduction tuyau {R_cond_tuy}")
 print(f"Résistance de conduction isolant {R_cond_iso}")
@@ -68,10 +81,12 @@ print(f"La résistance totale est {R_tot:.5f}")
 
 # étape 3: évaluer les pertes de chaleur en puissance
 
-delta_tlm = delta_tlm(T_air, T_in, T_out_theorique)
+delta_tlm = del_tlm(T_air, T_in, T_out_theorique)
+delta_tlm_saison = del_tlm_saison(saison, T_in,T_out_theorique)
 pertes = calculer_pertes(R_tot, delta_tlm)
+pertes_saison = calculer_pertes_saisons(R_tot, delta_tlm_saison)
 
-print(f"Les pertes sont évaluées à {pertes:.2f} W vers l'extérieur")
+print(f"Les pertes sont évaluées à {pertes_saison:.2f} W vers l'extérieur")
 
 # étape 4: évaluer la puissance en pompage nécessaire
 
