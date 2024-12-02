@@ -34,9 +34,9 @@ t_tuy = 0.01 # épaisseur du tuyau en mètres
 
 # paramètres de l'isolsant
 D_iso = D_tuy+(2*t_tuy)
-t_iso = 0
+t_iso = 0.1
 L_iso = L_tuy
-k_iso = 0.035 #conductuvité thermique de l'isolant - 0.035 = laine de verre ou laine de roche
+k_iso = 0.5 #conductuvité thermique de l'isolant - 0.035 = laine de verre ou laine de roche
 
 
 # étape 1: évaluer la température en entrée des bâtiments
