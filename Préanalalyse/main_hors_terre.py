@@ -32,7 +32,10 @@ L_tuy = 1500 # longueur du tuyau, fixée à 1.5 km
 t_tuy = 0.01 # épaisseur du tuyau en mètres
 
 # paramètres de l'isolsant
+D_iso = D_tuy+(2*t_tuy)
 t_iso = 0.1
+L_iso = L_tuy
+k_iso = 0.035 #conductuvité thermique de l'isolant - 0.035 = laine de verre ou laine de roche
 
 
 # étape 1: évaluer la température en entrée des bâtiments
@@ -55,11 +58,10 @@ print(Re_eau)
 
 R_conv_int = résistance_convection_interne(D_tuy, k_eau, L_tuy)
 R_cond_tuy = calculer_Rconduction_cylindre(D_tuy, t_tuy, L_tuy, k_tuy)
-R_cond_iso = calculer_Rconduction_cylindre(D_tuy, t_tuy, L_tuy, k_tuy)
+R_cond_iso = calculer_Rconduction_cylindre(D_iso, t_iso, L_tuy, k_iso)
 R_conv_ext = résistance_convection_externe(D_tuy, k_air, L_tuy, Re_air, Pr_air)
 
-R_tot = R_conv_int + R_cond_tuy + R_conv_ext
-
+R_tot = R_conv_int + R_cond_tuy + R_conv_ext + R_cond_iso 
 print(f"La résistance totale est {R_tot:.5f}")
 
 # étape 3: évaluer les pertes de chaleur en puissance

@@ -24,6 +24,18 @@ longueur = 1500 # longueur du tuyau, fixée à 1.5 km
 epaisseur_tuyau = 0.01 # épaisseur du tuyau en mètres
 profondeur_tuyau = 0.10
 
+# paramètres du tuyau
+D_tuy = 0.15 # diametre du tuyau d'alimentation
+k_tuy = 50 # conducivité du tuyau en acier au carbone, estimée à 50 w/m.K
+L_tuy = 1500 # longueur du tuyau, fixée à 1.5 km
+t_tuy = 0.01 # épaisseur du tuyau en mètres
+
+# paramètres de l'isolsant
+D_iso = D_tuy+(2*t_tuy)
+t_iso = 0.1
+L_iso = L_tuy
+k_iso = 0.035 #conductuvité thermique de l'isolant - 0.035 = laine de verre ou laine de roche
+
 # étape 1: évaluer la température en entrée des bâtiments
 debit_massique = densite_eau * np.pi * 1/4 * D**2 * vitesse_eau
 temp_sortie_alimentation = demande/(debit_massique * chaleur_specifique_eau) + temp_retour
@@ -34,15 +46,14 @@ prandtl = calculer_prandtl_eau(temp_moyenne)
 viscosite_eau = calculer_viscosite_eau(temp_moyenne)
 reynolds = calculer_reynolds(densite_eau, viscosite_eau, D, viscosite_eau)
 
-
-
 # étape 2: évaluer la résistance totale du circuit thermique
 
 R_conv_int = résistance_convection_interne(D, conductivite_eau, longueur)
 R_cond = calculer_Rconduction_cylindre(D, epaisseur_tuyau, longueur, conductivite)
+R_cond_iso = calculer_Rconduction_cylindre(D_iso, t_iso, L_tuy, k_iso)
 R_S = R_pas_profond(longueur, profondeur_tuyau, D, conductivite_sol)
 
-R_tot = R_conv_int + R_cond + R_S
+R_tot = R_conv_int + R_cond + R_S + R_cond_iso
 
 print(R_tot)
 
