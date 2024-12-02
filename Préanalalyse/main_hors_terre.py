@@ -21,7 +21,7 @@ C_eau = 4.18 * 10**3 # chaleur spécifique de l'eau qui est considéré comme co
 k_eau = 650 * 10**-3 # conductivite de l'eau en W/m.k
 
 # paramètres de l'air
-k_air = 24*10**-3
+k_air = 24 * 10**-3
 V_air = 5
 rho_air = 1.2
 T_air = 0
@@ -53,7 +53,6 @@ Re_eau = calculer_reynolds(rho_eau, V_eau, D_tuy, mu_eau)
 Pr_air = calculer_prandtl_air(T_air)
 mu_air = calculer_viscosite_air(T_air)
 Re_air = calculer_reynolds(rho_air, V_air, D_iso + 2*t_iso, mu_air)
-
 # étape 2: évaluer la résistance totale du circuit thermique
 R_conv_int = résistance_convection_interne(D_tuy, k_eau, L_tuy)
 R_cond_tuy = calculer_Rconduction_cylindre(D_tuy, t_tuy, L_tuy, k_tuy)
