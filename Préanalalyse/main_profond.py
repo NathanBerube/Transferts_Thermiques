@@ -61,7 +61,7 @@ print(f"Résistance de conduction tuyau {R_cond_tuy}")
 print(f"Résistance de conduction isolant {R_cond_iso}")
 print(f"Résistance profond {R_S}")
 
-R_tot = R_conv_int + R_cond_iso + R_S + R_cond_iso
+R_tot = R_conv_int + R_cond_tuy + R_S + R_cond_iso
 print(f"La résistance totale est {R_tot}")
 
 # étape 3: évaluer les pertes de chaleur en puissance
