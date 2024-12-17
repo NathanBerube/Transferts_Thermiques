@@ -10,6 +10,9 @@ from demande_en_pompage import *
 from resistance_convection_externe import *
 
 # Code pour le graphique qui met en relation la profondeur du tuyau dans le sol et les pertes de chaleur moyennes pour les quatres saisons
+
+# NOTE: Tous les paramètres doivent être spécifiés dans le système d'unité international SAUF la température en ˚C (et non K)
+
 # Les caractéristiques de l'écoulement sont les valeurs moyennes des plages d'utilisation fournies dans l'énoncé
 
 # Propriétés du vent pour le vent par saison [température en ˚C, vitesse en m/s]
@@ -76,7 +79,7 @@ for i, saison in enumerate(saisons):
     Re_air = calculer_reynolds(rho_air, V_air, D_iso + 2*t_iso, mu_air) # Reynolds de l'air
 
     # étape 2: évaluer la résistance totale du circuit thermique
-    R_conv_int = résistance_convection_interne(D_tuy, k_eau, L_tuy) # résistance de convection interne dans le tuyau
+    R_conv_int = résistance_convection_interne(D_tuy, k_eau, L_tuy, Re_eau, Pr_eau) # résistance de convection interne dans le tuyau
     R_cond_tuy = calculer_Rconduction_cylindre(D_tuy, t_tuy, L_tuy, k_tuy) # résistance de conduction dans le tuyau
     R_cond_iso = calculer_Rconduction_cylindre(D_iso, t_iso, L_tuy, k_iso) # résistance de conduction dans l'isolant
     R_conv_ext = résistance_convection_externe(D_iso + 2*t_iso, k_air, L_tuy, Re_air, Pr_air) # résistance de convection à l'extérieur du tuyau avec l'air

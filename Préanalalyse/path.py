@@ -1,1 +1,0 @@
-path_temperature = "/Users/nathan/Documents/UL/Session 5 - A24/TT/Copie_de_Météo_Kuujjuaq.xlsx"

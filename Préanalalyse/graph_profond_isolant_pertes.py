@@ -9,7 +9,9 @@ from pertes import *
 from demande_en_pompage import *
 
 # Code pour le graphique qui met en relation le diamètre de l'isolant et les pertes de chaleur
-# pour plusieurs diamètre de tuyau pour le cas dans le sol
+# pour plusieurs diamètres de tuyau pour le cas dans le sol
+
+# NOTE: Tous les paramètres doivent être spécifiés dans le système d'unité international SAUF la température en ˚C (et non K)
 
 # Les caractéristiques de l'écoulement sont les valeurs moyennes des plages d'utilisation fournies dans l'énoncé
 
@@ -72,11 +74,11 @@ for diametre in D_tuy:
 
     # paramètres calculés en fonction de ceux imposés
     T_moy = (T_in + T_out_théorique)/2 # évaluation des propriétés à cette température
-    Re_eau = calculer_reynolds(rho_eau, V_eau, D_tuy, mu_eau) # Reynolds de l'eau
+    Re_eau = calculer_reynolds(rho_eau, V_eau, diametre, mu_eau) # Reynolds de l'eau
 
 
     # étape 2: évaluer la résistance totale du circuit thermique
-    R_conv_int = résistance_convection_interne(diametre, k_eau, L_tuy) # résistance de convection interne dans le tuyau
+    R_conv_int = résistance_convection_interne(diametre, k_eau, L_tuy, Re_eau, Pr_eau) # résistance de convection interne dans le tuyau
     R_cond_tuy = calculer_Rconduction_cylindre(diametre, t_tuy, L_tuy, k_tuy) # résistance de conduction dans le tuyau
     R_cond_iso = calculer_Rconduction_cylindre(D_iso, t_iso, L_tuy, k_iso) # résistance de conduction dans l'isolant
     R_S = R_profond(L_tuy, Z_tuyau, D_iso + 2*t_iso, conductivite_sol) # résistance de conduction dans le sol
@@ -106,7 +108,7 @@ for diametre in D_tuy:
     plt.plot(t_iso, np.abs(pertes)/1000, label=f"Diamètre du tuyau= {diametre*100:.0f} cm")
 
 plt.xlabel("Épaisseur de l'isolant [m]", fontsize=18)
-plt.ylabel("Pertes de chaleur estimée [W]", fontsize=18)
+plt.ylabel("Pertes de chaleur estimées [W]", fontsize=18)
 plt.legend()
 plt.show()
 

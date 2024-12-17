@@ -10,6 +10,8 @@ from demande_en_pompage import *
 
 # Code pour le graphique qui met en relation le diamètre du tuyau et la puissance de pompage estimée pour différentes vitesse de l'écoulement
 
+# NOTE: Tous les paramètres doivent être spécifiés dans le système d'unité international SAUF la température en ˚C (et non K)
+
 
 # paramètres de l'eau
 V_eau = [1,2,3] # vitesse moyenne de l'eau dans le tuyau en m/s

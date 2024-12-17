@@ -14,6 +14,9 @@ from resistance_convection_externe import *
 
 # Les caractéristiques de l'écoulement sont les valeurs moyennes des plages d'utilisation fournies dans l'énoncé
 
+# NOTE: Tous les paramètres doivent être spécifiés dans le système d'unité international SAUF la température en ˚C (et non K)
+
+
 # Propriétés du vent pour le vent par saison [température en ˚C, vitesse en m/s]
 H = [-19.8, 4.32]
 P = [-12.4, 4.45]
@@ -73,14 +76,14 @@ for diametre in D_tuy:
 
     # paramètres calculés en fonction de ceux imposés
     T_moy = (T_in + T_out_théorique)/2 # évaluation des propriétés à cette température en ˚C
-    Re_eau = calculer_reynolds(rho_eau, V_eau, D_tuy, mu_eau) # Reynolds de l'eau
+    Re_eau = calculer_reynolds(rho_eau, V_eau, diametre, mu_eau) # Reynolds de l'eau
 
     Pr_air = calculer_prandtl_air(T_air) # Prandtl de l'air
     mu_air = calculer_viscosite_air(T_air) # viscosité dynamique de l'air en Pa.s
     Re_air = calculer_reynolds(rho_air, V_air, D_iso + 2*t_iso, mu_air) # Reynolds de l'air
 
     # étape 2: évaluer la résistance totale du circuit thermique
-    R_conv_int = résistance_convection_interne(diametre, k_eau, L_tuy) # résistance de convection interne dans le tuyau
+    R_conv_int = résistance_convection_interne(diametre, k_eau, L_tuy, Re_eau, Pr_eau) # résistance de convection interne dans le tuyau
     R_cond_tuy = calculer_Rconduction_cylindre(diametre, t_tuy, L_tuy, k_tuy) # résistance de conduction dans le tuyau
     R_cond_iso = calculer_Rconduction_cylindre(D_iso, t_iso, L_tuy, k_iso) # résistance de conduction dans l'isolant
     R_conv_ext = résistance_convection_externe(D_iso + 2*t_iso, k_air, L_tuy, Re_air, Pr_air) # résistance de convection externe sur le tuyau dans l'air
@@ -108,7 +111,7 @@ for diametre in D_tuy:
     plt.plot(t_iso, np.abs(pertes)/1000, label=f"Diamètre du tuyau= {diametre*100:.0f} cm")
 
 plt.xlabel("Épaisseur de l'isolant [m]", fontsize=18)
-plt.ylabel("Pertes de chaleur estimées [W]", fontsize=18)
+plt.ylabel("Pertes de chaleur estimées [kW]", fontsize=18)
 plt.legend()
 plt.show()
 
