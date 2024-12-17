@@ -9,6 +9,8 @@ from pertes import *
 from demande_en_pompage import *
 
 
+# NOTE: Tous les paramètres doivent être spécifiés dans le système d'unité international SAUF la température en ˚C (et non K)
+
 
 #Valeur pour le vent par saison [température, vitesse]
 H = [-19.8, 4.32]
@@ -82,7 +84,7 @@ Re_eau = calculer_reynolds(rho_eau, V_eau, D_tuy, mu_eau)
 Pr_eau = 6.9 #Pr_eau = calculer_prandtl_eau(T_moy)
 
 # étape 2: évaluer la résistance totale du circuit thermique
-R_conv_int = résistance_convection_interne(D_tuy, k_eau, L_tuy)
+R_conv_int = résistance_convection_interne(D_tuy, k_eau, L_tuy, Re_eau, Pr_eau)
 R_cond_tuy = calculer_Rconduction_cylindre(D_tuy, t_tuy, L_tuy, k_tuy)
 R_cond_iso = calculer_Rconduction_cylindre(D_iso, t_iso, L_tuy, k_iso)
 R_S = R_profond(L_tuy, Z_tuyau, D_iso + 2*t_iso, conductivite_sol)

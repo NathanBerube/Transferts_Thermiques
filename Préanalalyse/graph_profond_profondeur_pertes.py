@@ -12,6 +12,9 @@ from demande_en_pompage import *
 
 # Les caractéristiques de l'écoulement sont les valeurs moyennes des plages d'utilisation fournies dans l'énoncé
 
+# NOTE: Tous les paramètres doivent être spécifiés dans le système d'unité international SAUF la température en ˚C (et non K)
+
+
 # Propriétés du vent pour le vent par saison [température en ˚C, vitesse en m/s]
 H = [-19.8, 4.32]
 P = [-12.4, 4.45]
@@ -74,7 +77,7 @@ for epaisseur_iso in t_iso:
     Re_eau = calculer_reynolds(rho_eau, V_eau, D_tuy, mu_eau) # Reynolds de l'eau
 
     # étape 2: évaluer la résistance totale du circuit thermique
-    R_conv_int = résistance_convection_interne(D_tuy, k_eau, L_tuy) # résistance de convection interne dans le tuyau
+    R_conv_int = résistance_convection_interne(D_tuy, k_eau, L_tuy, Re_eau, Pr_eau) # résistance de convection interne dans le tuyau
     R_cond_tuy = calculer_Rconduction_cylindre(D_tuy, t_tuy, L_tuy, k_tuy) # résistance de conduction dans le tuyau
     R_cond_iso = calculer_Rconduction_cylindre(D_iso, epaisseur_iso, L_tuy, k_iso) # résistance de conduction dans l'isolant
     R_S = R_profond(L_tuy, Z_tuyau, D_iso + 2*epaisseur_iso, conductivite_sol) # résistance de conduction dans le sol
