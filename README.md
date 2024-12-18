@@ -20,6 +20,9 @@ L’estimation des pertes thermiques a été réalisée en tenant compte de la d
 La température ainsi obtenue permet d’estimer les pertes thermiques dans le tuyau d’alimentation. Pour cela, il est nécessaire de calculer la résistance thermique totale entre l’air ambiant et l’écoulement. Les détails du circuit thermique sont disponibles dans les différents fichiers. Les pertes thermiques sont ensuite calculées à l’aide d’un bilan d’énergie appliqué au tuyau d’alimentation avec l’équation suivante extraite du recueil $q_{pertes} = \frac{1}{R_{tot}}\Delta T_{lm}$
 
 
+Les détails concernant la perte de charge et la demande en pompage se trouve dans le fichier demande_en_pompage.py.
 
+
+Également, l'influence de la saison peut-être observée en sélectionnant les valeurs moyennes de température et de vitesse de vent en choisisant la saison désirée dans les scripts main_hors_terre.py et main_profond.py. Plus de détails s'y trouvent.
 
 
