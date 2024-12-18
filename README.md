@@ -11,12 +11,12 @@ Tout d'abord, la température d'alimentation et de retour du système ont été 
 
 Par ailleurs, étant donné que les propriétés varient peu dans la plage de température en jeu dans le projet, celle-ci ont été considérées comme constante pour simplifier les calculs. Les propriétés ont été évaluées à la température moyenne de la plage d'opération. Les valeurs peuvent retrouvées dans le code aisèment dans la section prévue à cet effet (en haut de chaque fichier).
 
-Pour l'air, les propriétés sont plus sensibles à la température pour les températures en jeu, alors une inteprpolation linéaire des tables en annexe du recueil a été faite.
+Pour l'air, les propriétés sont plus sensibles à la température pour les températures en jeu, alors une interpolation linéaire des tables en annexe du recueil a été faite.
 
 
 Pour ce qui est des équations/corrélations utilisées, elles proviennent toutes du recueil. Les détails pour chacune des équations ainsi que leur utilisation se retourve dans les fichiers qui séparent les équations par catégorie et permet leur présentation.
 
 
-L'estimation des pertes a été possible en connaissant la demande en énergie des habitations ainsi que les températures d'entrée et de sortie du réseau entier. En laissant le diamètre du tuyau d'alimentation et la vitesse de l'eau comme paramètre libre, le débit massique se dirigeant vers les habitations est déterminé. La connaissance de ce débit massique permet de retrouver la température en sortie du tuyau d'alimentaion (ou entrée des habitations) à l'aide d'un bilan d'énergie $q = \dot{m}c_p\Delta T$
+L'estimation des pertes a été possible en connaissant la demande en énergie des habitations ainsi que les températures d'entrée et de sortie du réseau entier. En laissant le diamètre du tuyau d'alimentation et la vitesse de l'eau comme paramètre libre, le débit massique se dirigeant vers les habitations est déterminé. La connaissance de ce débit massique permet de retrouver la température en sortie du tuyau d'alimentaion (ou entrée des habitations) à l'aide d'un bilan d'énergie $q = \dot{m}c_p\Delta T$ au niveau des habitations. L'obtention de cette température permet alors d'estimer les pertes dans le tuyau d'alimentation. Il est cependant nécessaire de calculer la résistance thermique totale entre l'air ambiant et l'écoulement. Les détails du circuit thermique se trouvent dans les différents fichiers. Les pertes peuvent ensuite être calculées avec un bilan d'énergie sur le tuyau d'alimentation à l'aide de l'équation suivante du recueil $$q_{pertes} = \frac{1}{R_tot}\Delta T_{lm}$$
 
 
