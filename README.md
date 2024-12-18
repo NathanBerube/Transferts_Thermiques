@@ -17,3 +17,6 @@ Pour l'air, les propriétés sont plus sensibles à la température pour les tem
 Pour ce qui est des équations/corrélations utilisées, elles proviennent toutes du recueil. Les détails pour chacune des équations ainsi que leur utilisation se retourve dans les fichiers qui séparent les équations par catégorie et permet leur présentation.
 
 
+L'estimation des pertes a été possible en connaissant la demande en énergie des habitations ainsi que les températures d'entrée et de sortie du réseau entier. En laissant le diamètre du tuyau d'alimentation et la vitesse de l'eau comme paramètre libre, le débit massique se dirigeant vers les habitations est déterminé. La connaissance de ce débit massique permet de retrouver la température en sortie du tuyau d'alimentaion (ou entrée des habitations) à l'aide d'un bilan d'énergie $q = \dot{m}c_p\Delta T$
+
+
