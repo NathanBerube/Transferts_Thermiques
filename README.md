@@ -17,7 +17,11 @@ Les équations et corrélations utilisées proviennent intégralement du recueil
 
 L’estimation des pertes thermiques a été réalisée en tenant compte de la demande en énergie des habitations, ainsi que des températures d’entrée et de sortie du réseau. En laissant le diamètre du tuyau d’alimentation et la vitesse de l’eau comme paramètres libres, le débit massique dirigé vers les habitations a été déterminé. Cette connaissance permet de calculer la température en sortie du tuyau d’alimentation (ou entrée des habitations) grâce à un bilan d’énergie, $q = \dot{m}c_p\Delta T$, effectué au niveau des habitations.
 
-La température ainsi obtenue permet d’estimer les pertes thermiques dans le tuyau d’alimentation. Pour cela, il est nécessaire de calculer la résistance thermique totale entre l’air ambiant et l’écoulement. Les détails du circuit thermique sont disponibles dans les différents fichiers. Les pertes thermiques sont ensuite calculées à l’aide d’un bilan d’énergie appliqué au tuyau d’alimentation avec l’équation suivante extraite du recueil : $$ q_{pertes} = \frac{1}{R_{tot}}\Delta T_{lm} $$
+La température ainsi obtenue permet d’estimer les pertes thermiques dans le tuyau d’alimentation. Pour cela, il est nécessaire de calculer la résistance thermique totale entre l’air ambiant et l’écoulement. Les détails du circuit thermique sont disponibles dans les différents fichiers. Les pertes thermiques sont ensuite calculées à l’aide d’un bilan d’énergie appliqué au tuyau d’alimentation avec l’équation suivante extraite du recueil : 
+
+<div style="text-align: center;">
+$$ q_{pertes} = \frac{1}{R_{tot}}\Delta T_{lm} $$
+</div>
 
 
 
