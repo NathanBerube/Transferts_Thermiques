@@ -1,23 +1,23 @@
 # Transferts_Thermiques
-Tous les codes qui ont permis les calculs associés à la préanalyse énergétique. Deux solutions potentielles sont envisagées. Un tuyau hors-terre et un dans le seul. Les calculs pour les deux codes sont faits.
+Tous les codes ayant permis les calculs associés à la préanalyse énergétique sont présentés ici. Deux solutions potentielles sont envisagées : un tuyau hors-terre et un tuyau enterré. Les calculs pour les deux cas sont réalisés dans le code.
 
-Les codes main_hors_terre.py et main_profond.py permettent de rapidement calculer les résistances thermiques, les pertes totales du système ainsi que la demande en puissance de pompage pour les deux solutions proposées. 
+Les scripts main_hors_terre.py et main_profond.py permettent de calculer rapidement les résistances thermiques, les pertes totales du système, ainsi que la demande en puissance de pompage pour les deux solutions proposées.
 
-Les codes graph(...).py permettent de visualiser l'influence de plusieurs paramètres comme le diamètre du tuyau, l'épaisseur de l'isolant, la profondeur (cas dans le sol), la température externe (selon la saison), la vitesse du vent (selon la saison). Ces fichiers permettent d'obtenir tous les graphiques qui se trouvent en annexe du rapport.
+Les scripts graph(...).py permettent de visualiser l'influence de plusieurs paramètres tels que le diamètre du tuyau, l'épaisseur de l’isolant, la profondeur (cas enterré), la température externe (selon la saison) et la vitesse du vent (selon la saison). Ces fichiers génèrent tous les graphiques présentés en annexe du rapport.
 
-Afin d'arriver aux résultats préliminaires qui s'intéressent plutôt au ordres de grandeur, plusieurs hypothèses ont été posées.
+Afin d’obtenir des résultats préliminaires orientés sur les ordres de grandeur, plusieurs hypothèses ont été formulées.
 
-Tout d'abord, la température d'alimentation et de retour du système ont été estimée à l'aide de la moyenne de la plage de valeur fournie étant donnée que ces valeurs peuent fluctuer dans le temps selon la demande émergétique des habitations.
+Tout d’abord, la température d’alimentation et de retour du système a été estimée à partir de la moyenne de la plage de valeurs fournies, étant donné que ces températures peuvent fluctuer dans le temps selon la demande énergétique des habitations.
 
-Par ailleurs, étant donné que les propriétés varient peu dans la plage de température en jeu dans le projet, celle-ci ont été considérées comme constante pour simplifier les calculs. Les propriétés ont été évaluées à la température moyenne de la plage d'opération. Les valeurs peuvent retrouvées dans le code aisèment dans la section prévue à cet effet (en haut de chaque fichier).
+Par ailleurs, étant donné que les propriétés de l’eau varient peu dans la plage de températures concernées par le projet, celles-ci ont été considérées comme constantes pour simplifier les calculs. Les propriétés de l’eau ont été évaluées à la température moyenne de la plage d’opération. Ces valeurs peuvent être retrouvées aisément dans la section prévue à cet effet (en haut de chaque fichier).
 
-Pour l'air, les propriétés sont plus sensibles à la température pour les températures en jeu, alors une interpolation linéaire des tables en annexe du recueil a été faite.
+En ce qui concerne l’air, ses propriétés, plus sensibles à la température dans la plage considérée, ont été déterminées par interpolation linéaire à partir des tables présentées en annexe du recueil.
 
+Les équations et corrélations utilisées proviennent intégralement du recueil. Les détails concernant chaque équation, ainsi que leur utilisation, sont documentés dans les fichiers, qui les classent par catégorie pour en faciliter la consultation.
 
-Pour ce qui est des équations/corrélations utilisées, elles proviennent toutes du recueil. Les détails pour chacune des équations ainsi que leur utilisation se retourve dans les fichiers qui séparent les équations par catégorie et permet leur présentation.
+L’estimation des pertes thermiques a été réalisée en tenant compte de la demande en énergie des habitations, ainsi que des températures d’entrée et de sortie du réseau. En laissant le diamètre du tuyau d’alimentation et la vitesse de l’eau comme paramètres libres, le débit massique dirigé vers les habitations a été déterminé. Cette connaissance permet de calculer la température en sortie du tuyau d’alimentation (ou entrée des habitations) grâce à un bilan d’énergie, $q = \dot{m}c_p\Delta T$, effectué au niveau des habitations.
 
-
-L'estimation des pertes a été possible en connaissant la demande en énergie des habitations ainsi que les températures d'entrée et de sortie du réseau entier. En laissant le diamètre du tuyau d'alimentation et la vitesse de l'eau comme paramètre libre, le débit massique se dirigeant vers les habitations est déterminé. La connaissance de ce débit massique permet de retrouver la température en sortie du tuyau d'alimentaion (ou entrée des habitations) à l'aide d'un bilan d'énergie $q = \dot{m}c_p\Delta T$ au niveau des habitations. L'obtention de cette température permet alors d'estimer les pertes dans le tuyau d'alimentation. Il est cependant nécessaire de calculer la résistance thermique totale entre l'air ambiant et l'écoulement. Les détails du circuit thermique se trouvent dans les différents fichiers. Les pertes peuvent ensuite être calculées avec un bilan d'énergie sur le tuyau d'alimentation à l'aide de l'équation suivante du recueil $q_{pertes} = \frac{1}{R_{tot}}\Delta T_{lm}$.
+La température ainsi obtenue permet d’estimer les pertes thermiques dans le tuyau d’alimentation. Pour cela, il est nécessaire de calculer la résistance thermique totale entre l’air ambiant et l’écoulement. Les détails du circuit thermique sont disponibles dans les différents fichiers. Les pertes thermiques sont ensuite calculées à l’aide d’un bilan d’énergie appliqué au tuyau d’alimentation avec l’équation suivante extraite du recueil : $$ q_{pertes} = \frac{1}{R_{tot}}\Delta T_{lm} $$
 
 
 
